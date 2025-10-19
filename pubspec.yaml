@@ -43,33 +43,33 @@ flutter:
   fonts:
     - family: Poppins
       fonts:
-        - asset: lib/ui/assets/fonts/Poppins-Light.ttf
+        - asset: lib/res/fonts/Poppins-Light.ttf
           weight: 300
-        - asset: lib/ui/assets/fonts/Poppins-LightItalic.ttf
+        - asset: lib/res/fonts/Poppins-LightItalic.ttf
           weight: 300
           style: italic
-        - asset: lib/ui/assets/fonts/Poppins-Regular.ttf
+        - asset: lib/res/fonts/Poppins-Regular.ttf
           weight: 400
-        - asset: lib/ui/assets/fonts/Poppins-Italic.ttf
+        - asset: lib/res/fonts/Poppins-Italic.ttf
           weight: 400
           style: italic
-        - asset: lib/ui/assets/fonts/Poppins-Medium.ttf
+        - asset: lib/res/fonts/Poppins-Medium.ttf
           weight: 600
-        - asset: lib/ui/assets/fonts/Poppins-MediumItalic.ttf
+        - asset: lib/res/fonts/Poppins-MediumItalic.ttf
           weight: 600
           style: italic
-        - asset: lib/ui/assets/fonts/Poppins-SemiBold.ttf
+        - asset: lib/res/fonts/Poppins-SemiBold.ttf
           weight: 700
-        - asset: lib/ui/assets/fonts/Poppins-SemiBoldItalic.ttf
+        - asset: lib/res/fonts/Poppins-SemiBoldItalic.ttf
           weight: 700
           style: italic
-        - asset: lib/ui/assets/fonts/Poppins-Bold.ttf
+        - asset: lib/res/fonts/Poppins-Bold.ttf
           weight: 800
-        - asset: lib/ui/assets/fonts/Poppins-BoldItalic.ttf
+        - asset: lib/res/fonts/Poppins-BoldItalic.ttf
           weight: 800
           style: italic
-        - asset: lib/ui/assets/fonts/Poppins-ExtraBold.ttf
+        - asset: lib/res/fonts/Poppins-ExtraBold.ttf
           weight: 900
-        - asset: lib/ui/assets/fonts/Poppins-ExtraBoldItalic.ttf
+        - asset: lib/res/fonts/Poppins-ExtraBoldItalic.ttf
           weight: 900
           style: italic
