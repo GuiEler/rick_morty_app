@@ -20,7 +20,7 @@ class _SplashViewState extends State<SplashView> {
     super.initState();
     viewModel = GetIt.I<SplashViewModel>();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      viewModel.startSplash(context);
+      viewModel.startSplash();
     });
   }
 
@@ -30,6 +30,7 @@ class _SplashViewState extends State<SplashView> {
       child: Center(
         child: LottieControlledAnimation(
           lottiePath: AppLotties.rick,
+          animationHeightFactor: 0.5,
         ),
       ),
     ),
