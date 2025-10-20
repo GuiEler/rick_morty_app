@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../main/routes.dart';
-import '../../../utils/utils.dart';
-import '../res/theme/app_colors.dart';
-import '../res/theme/app_text_styles.dart';
-import '../view/helpers/helpers.dart';
-import '../view/widgets/widgets.dart';
+import '../../../../main/routes.dart';
+import '../../../../utils/utils.dart';
+import '../../res/theme/app_colors.dart';
+import '../../res/theme/app_text_styles.dart';
+import '../helpers/helpers.dart';
+import '../widgets/widgets.dart';
 
-class NavigationErrorView extends StatelessWidget {
-  const NavigationErrorView({super.key, required this.error});
+class NavigationErrorScreen extends StatelessWidget {
+  const NavigationErrorScreen({super.key, required this.error});
 
   final Exception? error;
 

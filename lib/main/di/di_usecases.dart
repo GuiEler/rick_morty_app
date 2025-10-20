@@ -7,4 +7,7 @@ void setupUsecases() {
   getIt.registerLazySingleton<GetCharacterDetailsUsecase>(
     () => RemoteGetCharacterDetails(getIt<CharacterRepository>()),
   );
+  getIt.registerLazySingleton<GetCharactersUsecase>(
+    () => RemoteGetCharacters(getIt<CharacterRepository>()),
+  );
 }

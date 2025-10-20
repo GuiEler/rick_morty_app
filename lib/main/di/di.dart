@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../data/http/http.dart';
 import '../../data/repositories/repositories.dart';
 import '../../domain/repositories/repositories.dart';
-import '../../viewmodels/viewmodels.dart';
+import '../../view_model/view_model.dart';
 import '../factories/http/http.dart';
 import '../routes.dart';
 
@@ -17,4 +17,5 @@ void setupDI() {
   getIt.registerLazySingleton<CharacterRepository>(() => CharacterRepositoryImpl(getIt<MyHttpClient>()));
   getIt.registerLazySingleton<GoRouter>(() => AppRouter.routerConfig);
   getIt.registerFactory<SplashViewModel>(SplashViewModel.new);
+  getIt.registerFactory<CharactersViewModel>(CharactersViewModel.new);
 }

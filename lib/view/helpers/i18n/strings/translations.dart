@@ -1,4 +1,9 @@
 abstract interface class Translations {
+  String get charactersTitle;
+  String get appTitle;
+  String get noMoreCharacters;
+  String get charactersEmpty;
+  String get tryAgain;
   String get apiError;
   String get invalidCredentialsError;
   String get notFoundError;

@@ -2,6 +2,16 @@ import 'translations.dart';
 
 class PtBr implements Translations {
   @override
+  String get charactersTitle => 'Personagens';
+  @override
+  String get appTitle => 'Rick and Morty';
+  @override
+  String get noMoreCharacters => 'Não há mais personagens para carregar.';
+  @override
+  String get charactersEmpty => 'Nenhum personagem encontrado.';
+  @override
+  String get tryAgain => 'Tentar novamente';
+  @override
   String get apiError => 'Erro de comunicação com o servidor.';
   @override
   String get invalidCredentialsError => 'Credenciais inválidas.';

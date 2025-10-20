@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../utils/utils.dart';
-import 'factories/views/views.dart';
+import 'factories/screens/screens.dart';
 
 enum AppRoutes {
   splash(name: 'Splash', path: '/'),
@@ -30,13 +30,21 @@ mixin AppRouter {
         name: AppRoutes.splash.name,
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
-          child: makeSplashView(),
+          child: makeSplashScreen(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.characters.path,
+        name: AppRoutes.characters.name,
+        pageBuilder: (context, state) => MaterialPage(
+          key: state.pageKey,
+          child: makeCharactersScreen(),
         ),
       ),
     ],
     errorPageBuilder: (context, state) => MaterialPage(
       key: state.pageKey,
-      child: makeNavigationErrorView(error: state.error),
+      child: makeNavigationErrorScreen(error: state.error),
     ),
   );
 

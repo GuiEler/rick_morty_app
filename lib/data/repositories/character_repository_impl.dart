@@ -35,8 +35,8 @@ class CharacterRepositoryImpl implements CharacterRepository {
       queryParameters: {'page': page},
       cancelToken: cancelToken,
     );
-    if (response is List) {
-      return response.map((map) => CharacterDto.fromMap(map).toModel()).toList();
+    if (response is Map && response['results'] is List) {
+      return (response['results'] as List).map((map) => CharacterDto.fromMap(map).toModel()).toList();
     }
     throw const InvalidDataError();
   }

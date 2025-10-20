@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../res/app_lotties.dart';
-import '../view/widgets/widgets.dart';
-import '../view_model/view_model.dart';
+import '../../res/app_lotties.dart';
+import '../../view_model/splash_view_model.dart';
+import '../widgets/lottie_controlled_animation.dart';
 
-class SplashView extends StatefulWidget {
-  const SplashView({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashView> createState() => _SplashViewState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashViewState extends State<SplashView> {
+class _SplashScreenState extends State<SplashScreen> {
   late final SplashViewModel viewModel;
 
   @override
