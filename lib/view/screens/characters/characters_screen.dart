@@ -20,6 +20,7 @@ class CharactersScreen extends StatefulWidget {
 
 class _CharactersScreenState extends State<CharactersScreen> with UIErrorSnackbarMixin {
   late final CharactersViewModel viewmodel = getIt<CharactersViewModel>();
+  late final double bottomPadding = MediaQuery.paddingOf(context).bottom;
 
   @override
   void initState() {
@@ -36,6 +37,7 @@ class _CharactersScreenState extends State<CharactersScreen> with UIErrorSnackba
   @override
   Widget build(BuildContext context) => Scaffold(
     body: SafeArea(
+      bottom: false,
       child: RefreshIndicator(
         backgroundColor: AppColors.neutral400,
         onRefresh: () async => viewmodel.pagingController.refresh(),
@@ -61,7 +63,7 @@ class _CharactersScreenState extends State<CharactersScreen> with UIErrorSnackba
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
+                padding: EdgeInsets.fromLTRB(24, 24, 24, bottomPadding + 24),
                 sliver: PagedSliverGrid<int, CharacterModel>(
                   state: state,
                   fetchNextPage: fetchNextPage,

@@ -10,10 +10,12 @@ class CharacterDetailsBody extends StatelessWidget {
     super.key,
     required this.character,
     required this.episodeList,
+    required this.bottomPadding,
   });
 
   final CharacterModel character;
   final List<EpisodeModel> episodeList;
+  final double bottomPadding;
 
   @override
   Widget build(BuildContext context) => DecoratedSliver(
@@ -25,7 +27,7 @@ class CharacterDetailsBody extends StatelessWidget {
       color: AppColors.neutral500,
     ),
     sliver: SliverPadding(
-      padding: EdgeInsets.fromLTRB(24, 24, 24, MediaQuery.paddingOf(context).bottom + 24),
+      padding: EdgeInsets.fromLTRB(24, 24, 24, bottomPadding + 24),
       sliver: SliverFillRemaining(
         hasScrollBody: false,
         child: Column(

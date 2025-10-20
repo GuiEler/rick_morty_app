@@ -23,7 +23,8 @@ class CharacterDetailsScreen extends StatefulWidget {
 
 class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> with UIErrorSnackbarMixin {
   late final CharacterDetailsViewModel viewModel = getIt<CharacterDetailsViewModel>();
-  late final screenSize = MediaQuery.sizeOf(context);
+  late final Size screenSize = MediaQuery.sizeOf(context);
+  late final double bottomPadding = MediaQuery.paddingOf(context).bottom;
 
   double get imageHeight => screenSize.width * 0.8;
 
@@ -84,7 +85,11 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> with UI
                   CharacterDetailsHeader(imageHeight: imageHeight, character: character),
                 );
                 slivers.add(
-                  CharacterDetailsBody(character: character, episodeList: viewModel.episodeList),
+                  CharacterDetailsBody(
+                    character: character,
+                    episodeList: viewModel.episodeList,
+                    bottomPadding: bottomPadding,
+                  ),
                 );
               } else {
                 slivers.add(
