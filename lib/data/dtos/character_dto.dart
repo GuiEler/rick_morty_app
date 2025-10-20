@@ -1,3 +1,5 @@
+import 'package:path/path.dart' as path;
+
 import '../../domain/errors/errors.dart';
 import '../../domain/models/models.dart';
 import 'dtos.dart';
@@ -13,7 +15,7 @@ class CharacterDto {
     required this.origin,
     required this.location,
     required this.image,
-    required this.episode,
+    required this.episodeIds,
     required this.url,
     required this.created,
   });
@@ -27,7 +29,7 @@ class CharacterDto {
   final CharacterLocationDto origin;
   final CharacterLocationDto location;
   final String image;
-  final List<String> episode;
+  final List<String> episodeIds;
   final String url;
   final String created;
 
@@ -43,7 +45,10 @@ class CharacterDto {
         origin: CharacterLocationDto.fromMap(map['origin']),
         location: CharacterLocationDto.fromMap(map['location']),
         image: map['image'],
-        episode: map['episode'] is List ? List<String>.from((map['episode'] as List).map((x) => x)) : [],
+        episodeIds: map['episode'] is List
+            // ignore: unnecessary_lambdas
+            ? List<String>.from((map['episode'] as List).map((url) => path.basename(url)))
+            : [],
         url: map['url'],
         created: map['created'],
       );
@@ -57,14 +62,20 @@ class CharacterDto {
       return CharacterModel(
         id: id,
         name: name,
-        status: status,
+        status: CharacterStatus.values.firstWhere(
+          (e) => e.value.toLowerCase() == status.toLowerCase(),
+          orElse: () => CharacterStatus.unknown,
+        ),
         species: species,
         type: type,
-        gender: gender,
+        gender: CharacterGender.values.firstWhere(
+          (e) => e.value.toLowerCase() == gender.toLowerCase(),
+          orElse: () => CharacterGender.unknown,
+        ),
         origin: origin.toModel(),
         location: location.toModel(),
         image: image,
-        episode: episode,
+        episodeIds: episodeIds.map(int.parse).toList(),
         url: url,
         created: DateTime.parse(created),
       );

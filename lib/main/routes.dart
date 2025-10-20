@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../domain/errors/errors.dart';
 import '../utils/utils.dart';
 import 'factories/screens/screens.dart';
 
@@ -40,6 +41,28 @@ mixin AppRouter {
           key: state.pageKey,
           child: makeCharactersScreen(),
         ),
+        routes: [
+          GoRoute(
+            path: ':id',
+            name: AppRoutes.characterDetail.name,
+            pageBuilder: (context, state) {
+              final idParam = state.pathParameters['id'];
+              final characterId = int.tryParse(idParam ?? '');
+              if (characterId == null) {
+                return MaterialPage(
+                  key: state.pageKey,
+                  child: makeNavigationErrorScreen(
+                    error: const UnexpectedError(detail: 'Invalid character ID'),
+                  ),
+                );
+              }
+              return MaterialPage(
+                key: state.pageKey,
+                child: makeCharacterDetailsScreen(characterId: characterId),
+              );
+            },
+          ),
+        ],
       ),
     ],
     errorPageBuilder: (context, state) => MaterialPage(

@@ -2,6 +2,20 @@ import 'translations.dart';
 
 class PtBr implements Translations {
   @override
+  String get aboutCharacter => 'SOBRE O PERSONAGEM';
+  @override
+  String get locationLabel => 'Localização: ';
+  @override
+  String get statusLabel => 'Status: ';
+  @override
+  String get speciesLabel => 'Espécie: ';
+  @override
+  String get genderLabel => 'Gênero: ';
+  @override
+  String get originLabel => 'Origem: ';
+  @override
+  String get episodesList => 'LISTA DE EPISÓDIOS';
+  @override
   String get charactersTitle => 'Personagens';
   @override
   String get appTitle => 'Rick and Morty';

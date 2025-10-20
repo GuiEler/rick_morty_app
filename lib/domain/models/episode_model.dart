@@ -6,7 +6,7 @@ class EpisodeModel extends Equatable {
     required this.name,
     required this.airDate,
     required this.episode,
-    required this.characters,
+    required this.characterIds,
     required this.url,
     required this.created,
   });
@@ -15,7 +15,7 @@ class EpisodeModel extends Equatable {
   final String name;
   final String airDate;
   final String episode;
-  final List<String> characters;
+  final List<int> characterIds;
   final String url;
   final DateTime created;
 
@@ -25,7 +25,7 @@ class EpisodeModel extends Equatable {
     name,
     airDate,
     episode,
-    characters,
+    characterIds,
     url,
     created,
   ];

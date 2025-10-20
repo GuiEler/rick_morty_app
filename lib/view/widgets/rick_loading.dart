@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../res/app_lotties.dart';
+import '../../res/app_lotties.dart';
 
-class CharactersLoading extends StatelessWidget {
-  const CharactersLoading({super.key, this.height = 120});
+class RickLoading extends StatelessWidget {
+  const RickLoading({super.key, this.height = 120});
   final double height;
 
   @override

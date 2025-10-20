@@ -4,7 +4,7 @@ import '../../domain/errors/errors.dart';
 import '../errors/errors.dart';
 import '../widgets/widgets.dart';
 
-mixin UIErrorManager {
+mixin UIErrorSnackbarMixin {
   void handleMainError({
     required BuildContext context,
     required Stream<UIError> mainErrorStream,

@@ -13,21 +13,21 @@ class CharacterModel extends Equatable {
     required this.origin,
     required this.location,
     required this.image,
-    required this.episode,
+    required this.episodeIds,
     required this.url,
     required this.created,
   });
 
   final int id;
   final String name;
-  final String status;
+  final CharacterStatus status;
   final String species;
   final String type;
-  final String gender;
+  final CharacterGender gender;
   final CharacterLocationModel origin;
   final CharacterLocationModel location;
   final String image;
-  final List<String> episode;
+  final List<int> episodeIds;
   final String url;
   final DateTime created;
 
@@ -42,8 +42,27 @@ class CharacterModel extends Equatable {
     origin,
     location,
     image,
-    episode,
+    episodeIds,
     url,
     created,
   ];
+}
+
+enum CharacterStatus {
+  alive('Alive'),
+  dead('Dead'),
+  unknown('unknown');
+
+  final String value;
+  const CharacterStatus(this.value);
+}
+
+enum CharacterGender {
+  male('Male'),
+  female('Female'),
+  genderless('Genderless'),
+  unknown('unknown');
+
+  final String value;
+  const CharacterGender(this.value);
 }

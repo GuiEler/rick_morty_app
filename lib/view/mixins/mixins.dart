@@ -1,1 +1,1 @@
-export 'ui_error_manager.dart';
+export 'ui_error_snackbar_mixin.dart';

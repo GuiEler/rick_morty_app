@@ -8,7 +8,7 @@ import '../../../res/theme/app_text_styles.dart';
 import '../../../view_model/view_model.dart';
 import '../../helpers/helpers.dart';
 import '../../mixins/mixins.dart';
-import '../../widgets/on_error_reload_button.dart';
+import '../../widgets/widgets.dart';
 import 'widgets/widgets.dart';
 
 class CharactersScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class CharactersScreen extends StatefulWidget {
   State<CharactersScreen> createState() => _CharactersScreenState();
 }
 
-class _CharactersScreenState extends State<CharactersScreen> with UIErrorManager {
+class _CharactersScreenState extends State<CharactersScreen> with UIErrorSnackbarMixin {
   late final CharactersViewModel viewmodel = getIt<CharactersViewModel>();
 
   @override
@@ -67,9 +67,13 @@ class _CharactersScreenState extends State<CharactersScreen> with UIErrorManager
                   fetchNextPage: fetchNextPage,
                   builderDelegate: PagedChildBuilderDelegate(
                     noMoreItemsIndicatorBuilder: (context) => const NoMoreCharacters(),
-                    itemBuilder: (context, item, index) => CharacterItem(key: ValueKey(item.id), item: item),
-                    newPageProgressIndicatorBuilder: (context) => const CharactersLoading(),
-                    firstPageProgressIndicatorBuilder: (context) => const CharactersLoading(),
+                    itemBuilder: (context, item, index) => CharacterItem(
+                      key: ValueKey(item.id),
+                      item: item,
+                      onTap: () => viewmodel.goToDetails(item.id),
+                    ),
+                    newPageProgressIndicatorBuilder: (context) => const RickLoading(),
+                    firstPageProgressIndicatorBuilder: (context) => const RickLoading(),
                     firstPageErrorIndicatorBuilder: (context) => OnErrorReloadButton(
                       reloadFunction: () => viewmodel.pagingController.refresh(),
                     ),

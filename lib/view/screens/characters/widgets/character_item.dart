@@ -10,9 +10,13 @@ class CharacterItem extends StatelessWidget {
   const CharacterItem({
     super.key,
     required this.item,
+    required this.onTap,
   });
 
   final CharacterModel item;
+  final VoidCallback onTap;
+
+  BorderRadius get borderRadius => BorderRadius.circular(8);
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -21,7 +25,7 @@ class CharacterItem extends StatelessWidget {
       Container(
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.green400, width: 2),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: borderRadius,
         ),
         clipBehavior: Clip.antiAlias,
         child: CachedNetworkImage(
@@ -54,24 +58,31 @@ class CharacterItem extends StatelessWidget {
           },
         ),
       ),
-      Align(
-        alignment: Alignment.bottomCenter,
-        child: DecoratedBox(
-          decoration: BoxDecoration(color: AppColors.neutral500.withValues(alpha: 0.9)),
-          child: Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: Text(
-                    item.name,
-                    style: AppTextStyles.bodySmall1,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
+      Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: borderRadius,
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: DecoratedBox(
+              decoration: BoxDecoration(color: AppColors.neutral500.withValues(alpha: 0.9)),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      child: Text(
+                        item.name,
+                        style: AppTextStyles.bodySmall1,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
