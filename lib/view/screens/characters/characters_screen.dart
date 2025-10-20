@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../domain/models/models.dart';
@@ -69,70 +67,7 @@ class _CharactersScreenState extends State<CharactersScreen> with UIErrorManager
                   fetchNextPage: fetchNextPage,
                   builderDelegate: PagedChildBuilderDelegate(
                     noMoreItemsIndicatorBuilder: (context) => const NoMoreCharacters(),
-                    itemBuilder: (context, item, index) => Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        Positioned.fill(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: AppColors.green400, width: 2),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            clipBehavior: Clip.antiAlias,
-                            child: CachedNetworkImage(
-                              imageUrl: item.image,
-                              fit: BoxFit.cover,
-                              progressIndicatorBuilder: (context, url, progress) => Center(
-                                child: CircularProgressIndicator.adaptive(
-                                  value: progress.progress,
-                                ),
-                              ),
-                              errorWidget: (context, error, stackTrace) => Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: AppColors.neutral100),
-                                  shape: BoxShape.circle,
-                                ),
-                                clipBehavior: Clip.antiAlias,
-                                child: const Icon(
-                                  Icons.link_off_rounded,
-                                  color: AppColors.neutral100,
-                                  size: 24,
-                                ),
-                              ),
-                              errorListener: (error) {
-                                if (error is HttpExceptionWithStatus) {
-                                  debugPrint(
-                                    'Error with code ${error.statusCode} on uri:${error.uri} and message ${error.message}',
-                                  );
-                                }
-                                debugPrint('Image Exception - $error');
-                              },
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(color: AppColors.neutral500.withValues(alpha: 0.9)),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                                    child: Text(
-                                      item.name,
-                                      style: AppTextStyles.bodySmall1,
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    itemBuilder: (context, item, index) => CharacterItem(key: ValueKey(item.id), item: item),
                     newPageProgressIndicatorBuilder: (context) => const CharactersLoading(),
                     firstPageProgressIndicatorBuilder: (context) => const CharactersLoading(),
                     firstPageErrorIndicatorBuilder: (context) => OnErrorReloadButton(
