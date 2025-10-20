@@ -2,6 +2,20 @@ import 'translations.dart';
 
 class PtBr implements Translations {
   @override
+  String get statusAlive => 'Vivo';
+  @override
+  String get statusDead => 'Morto';
+  @override
+  String get statusUnknown => 'Desconhecido';
+  @override
+  String get genderMale => 'Masculino';
+  @override
+  String get genderFemale => 'Feminino';
+  @override
+  String get genderless => 'Sem gênero';
+  @override
+  String get genderUnknown => 'Desconhecido';
+  @override
   String get aboutCharacter => 'SOBRE O PERSONAGEM';
   @override
   String get locationLabel => 'Localização: ';

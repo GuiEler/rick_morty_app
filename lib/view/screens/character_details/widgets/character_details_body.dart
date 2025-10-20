@@ -141,11 +141,11 @@ extension CharacterStatusExt on CharacterStatus {
   String get description {
     switch (this) {
       case CharacterStatus.alive:
-        return 'Vivo';
+        return R.strings.statusAlive;
       case CharacterStatus.dead:
-        return 'Morto';
+        return R.strings.statusDead;
       case CharacterStatus.unknown:
-        return 'Desconhecido';
+        return R.strings.statusUnknown;
     }
   }
 }
@@ -154,13 +154,13 @@ extension CharacterGenderExt on CharacterGender {
   String get description {
     switch (this) {
       case CharacterGender.male:
-        return 'Masculino';
+        return R.strings.genderMale;
       case CharacterGender.female:
-        return 'Feminino';
+        return R.strings.genderFemale;
       case CharacterGender.genderless:
-        return 'Sem gênero';
+        return R.strings.genderless;
       case CharacterGender.unknown:
-        return 'Desconhecido';
+        return R.strings.genderUnknown;
     }
   }
 }

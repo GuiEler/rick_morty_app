@@ -1,4 +1,11 @@
 abstract interface class Translations {
+  String get statusAlive;
+  String get statusDead;
+  String get statusUnknown;
+  String get genderMale;
+  String get genderFemale;
+  String get genderless;
+  String get genderUnknown;
   String get aboutCharacter;
   String get locationLabel;
   String get statusLabel;
