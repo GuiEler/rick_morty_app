@@ -22,6 +22,9 @@ class CharactersViewModel with UIErrorFeedbackMixin {
     try {
       return await _getCharactersUsecase(page: page, cancelToken: cancelToken);
     } on DomainError catch (error) {
+      if (error is NotFoundError) {
+        return [];
+      }
       mainError = error.toUIError();
       rethrow;
     }

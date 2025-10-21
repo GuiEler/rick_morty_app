@@ -67,6 +67,9 @@ class _CharactersScreenState extends State<CharactersScreen> with UIErrorSnackba
                 sliver: PagedSliverGrid<int, CharacterModel>(
                   state: state,
                   fetchNextPage: fetchNextPage,
+                  showNewPageErrorIndicatorAsGridChild: false,
+                  showNewPageProgressIndicatorAsGridChild: false,
+                  showNoMoreItemsIndicatorAsGridChild: false,
                   builderDelegate: PagedChildBuilderDelegate(
                     noMoreItemsIndicatorBuilder: (context) => const NoMoreCharacters(),
                     itemBuilder: (context, item, index) => CharacterItem(

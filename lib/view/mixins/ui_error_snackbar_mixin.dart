@@ -8,13 +8,12 @@ mixin UIErrorSnackbarMixin {
   void handleMainError({
     required BuildContext context,
     required Stream<UIError> mainErrorStream,
-    bool useExpandedVersion = false,
   }) {
     mainErrorStream.listen((error) {
       if (error is! NoError && (error is UnauthorizedError || context.mounted)) {
         Future.delayed(
           Duration.zero,
-          () => showMainErrorMessage(errorMessage: error.message, useExpandedVersion: useExpandedVersion),
+          () => showMainErrorMessage(errorMessage: error.message, useExpandedVersion: true),
         );
       }
     });
