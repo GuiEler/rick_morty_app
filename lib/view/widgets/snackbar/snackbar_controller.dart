@@ -80,11 +80,7 @@ class SnackbarController {
   }
 
   void _configureOverlay() {
-    BuildContext? overlay;
-    NavigationUtils.navigatorKey.currentState?.overlay?.context.visitChildElements((element) {
-      overlay = element;
-    });
-    _overlayState = overlay != null ? Overlay.of(overlay!) : null;
+    _overlayState = NavigationUtils.navigatorKey.currentState?.overlay;
     _overlayEntries.clear();
     _overlayEntries.addAll(_createOverlayEntries(_getBodyWidget()));
     _overlayState!.insertAll(_overlayEntries);
@@ -144,15 +140,15 @@ class SnackbarController {
   }
 
   Animation<double> _createBlurFilterAnimation() => Tween<double>(begin: 0, end: snackbar.overlayBlur).animate(
-        CurvedAnimation(
-          parent: _controller,
-          curve: const Interval(
-            0,
-            0.35,
-            curve: Curves.easeInOutCirc,
-          ),
-        ),
-      );
+    CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(
+        0,
+        0.35,
+        curve: Curves.easeInOutCirc,
+      ),
+    ),
+  );
 
   Animation<Color?> _createColorOverlayColor() =>
       ColorTween(begin: const Color(0x00000000), end: snackbar.overlayColor).animate(
@@ -167,50 +163,50 @@ class SnackbarController {
       );
 
   Iterable<OverlayEntry> _createOverlayEntries(Widget child) => <OverlayEntry>[
-        if (snackbar.overlayBlur > 0.0) ...[
-          OverlayEntry(
-            builder: (context) => GestureDetector(
-              onTap: () {
-                if (snackbar.isDismissible && !_onTappedDismiss) {
-                  _onTappedDismiss = true;
-                  close();
-                }
-              },
-              child: AnimatedBuilder(
-                animation: _filterBlurAnimation,
-                builder: (context, child) => BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: max(0.001, _filterBlurAnimation.value),
-                    sigmaY: max(0.001, _filterBlurAnimation.value),
-                  ),
-                  child: Container(
-                    constraints: const BoxConstraints.expand(),
-                    color: _filterColorAnimation.value,
-                  ),
-                ),
+    if (snackbar.overlayBlur > 0.0) ...[
+      OverlayEntry(
+        builder: (context) => GestureDetector(
+          onTap: () {
+            if (snackbar.isDismissible && !_onTappedDismiss) {
+              _onTappedDismiss = true;
+              close();
+            }
+          },
+          child: AnimatedBuilder(
+            animation: _filterBlurAnimation,
+            builder: (context, child) => BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: max(0.001, _filterBlurAnimation.value),
+                sigmaY: max(0.001, _filterBlurAnimation.value),
+              ),
+              child: Container(
+                constraints: const BoxConstraints.expand(),
+                color: _filterColorAnimation.value,
               ),
             ),
           ),
-        ],
-        OverlayEntry(
-          builder: (context) => Semantics(
-            focused: false,
-            container: true,
-            explicitChildNodes: true,
-            child: AlignTransition(
-              alignment: _animation,
-              child: snackbar.isDismissible ? _getDismissibleSnack(child) : _getSnackbarContainer(child),
-            ),
-          ),
         ),
-      ];
+      ),
+    ],
+    OverlayEntry(
+      builder: (context) => Semantics(
+        focused: false,
+        container: true,
+        explicitChildNodes: true,
+        child: AlignTransition(
+          alignment: _animation,
+          child: snackbar.isDismissible ? _getDismissibleSnack(child) : _getSnackbarContainer(child),
+        ),
+      ),
+    ),
+  ];
 
   Widget _getBodyWidget() => Builder(
-        builder: (_) => GestureDetector(
-          onTap: snackbar.onTap != null ? () => snackbar.onTap?.call(snackbar) : null,
-          child: snackbar,
-        ),
-      );
+    builder: (_) => GestureDetector(
+      onTap: snackbar.onTap != null ? () => snackbar.onTap?.call(snackbar) : null,
+      child: snackbar,
+    ),
+  );
 
   DismissDirection _getDefaultDismissDirection() {
     if (snackbar.snackPosition == SnackPosition.top) {
@@ -220,26 +216,26 @@ class SnackbarController {
   }
 
   Widget _getDismissibleSnack(Widget child) => Dismissible(
-        direction: snackbar.dismissDirection ?? _getDefaultDismissDirection(),
-        resizeDuration: null,
-        confirmDismiss: (_) {
-          if (_currentStatus == SnackbarStatus.opening || _currentStatus == SnackbarStatus.closing) {
-            return Future.value(false);
-          }
-          return Future.value(true);
-        },
-        key: const Key('dismissible'),
-        onDismissed: (_) {
-          _wasDismissedBySwipe = true;
-          _removeEntry();
-        },
-        child: _getSnackbarContainer(child),
-      );
+    direction: snackbar.dismissDirection ?? _getDefaultDismissDirection(),
+    resizeDuration: null,
+    confirmDismiss: (_) {
+      if (_currentStatus == SnackbarStatus.opening || _currentStatus == SnackbarStatus.closing) {
+        return Future.value(false);
+      }
+      return Future.value(true);
+    },
+    key: const Key('dismissible'),
+    onDismissed: (_) {
+      _wasDismissedBySwipe = true;
+      _removeEntry();
+    },
+    child: _getSnackbarContainer(child),
+  );
 
   Widget _getSnackbarContainer(Widget child) => Container(
-        margin: snackbar.margin,
-        child: child,
-      );
+    margin: snackbar.margin,
+    child: child,
+  );
 
   void _handleStatusChanged(AnimationStatus status) {
     switch (status) {
