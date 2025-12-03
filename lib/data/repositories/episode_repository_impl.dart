@@ -4,13 +4,12 @@ import 'package:path/path.dart';
 import '../../domain/errors/errors.dart';
 import '../../domain/models/models.dart';
 import '../../domain/repositories/repositories.dart';
+import '../../main/di/di.dart';
 import '../dtos/dtos.dart';
 import '../http/http.dart';
 
 class EpisodeRepositoryImpl implements EpisodeRepository {
-  final MyHttpClient httpClient;
-
-  EpisodeRepositoryImpl(this.httpClient);
+  final MyHttpClient httpClient = getIt<MyHttpClient>();
 
   static const String path = '/episode';
 

@@ -13,10 +13,13 @@ export 'di_usecases.dart';
 final getIt = GetIt.instance;
 
 void setupDI() {
-  getIt.registerLazySingleton<MyHttpClient>(makeDioAdapter);
-  getIt.registerLazySingleton<CharacterRepository>(() => CharacterRepositoryImpl(getIt<MyHttpClient>()));
-  getIt.registerLazySingleton<EpisodeRepository>(() => EpisodeRepositoryImpl(getIt<MyHttpClient>()));
   getIt.registerLazySingleton<GoRouter>(() => AppRouter.routerConfig);
+  getIt.registerLazySingleton<MyHttpClient>(
+    makeDioAdapter,
+    dispose: (client) => client.close(),
+  );
+  getIt.registerLazySingleton<CharacterRepository>(CharacterRepositoryImpl.new);
+  getIt.registerLazySingleton<EpisodeRepository>(EpisodeRepositoryImpl.new);
   getIt.registerFactory<SplashViewModel>(SplashViewModel.new);
   getIt.registerFactory<CharactersViewModel>(CharactersViewModel.new);
   getIt.registerFactory<CharacterDetailsViewModel>(CharacterDetailsViewModel.new);

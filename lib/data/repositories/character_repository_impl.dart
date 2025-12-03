@@ -4,15 +4,14 @@ import 'package:path/path.dart';
 import '../../domain/errors/errors.dart';
 import '../../domain/models/models.dart';
 import '../../domain/repositories/repositories.dart';
+import '../../main/di/di.dart';
 import '../dtos/dtos.dart';
 import '../http/http.dart';
 
 class CharacterRepositoryImpl implements CharacterRepository {
-  final MyHttpClient httpClient;
+  final MyHttpClient httpClient = getIt<MyHttpClient>();
 
   static const String path = '/character';
-
-  CharacterRepositoryImpl(this.httpClient);
 
   @override
   Future<CharacterModel> getCharacterDetails({required int id, required CancelToken? cancelToken}) async {
